@@ -1,0 +1,5 @@
+database=u726548613_ynade
+userid=u726548613_yjata
+password=yNaPegaNyq
+server=185.224.137.154
+port=3306

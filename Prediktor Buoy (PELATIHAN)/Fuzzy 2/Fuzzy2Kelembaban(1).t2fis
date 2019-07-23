@@ -1,0 +1,57 @@
+[System]
+Name='Fuzzy2Kelembaban'
+Type='sugeno'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='prod'
+OrMethod='probor'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+TypeRedMethod='Karnik-Mendel'
+outputType='icrisp'
+
+[Input1]
+Name='RH(t)'
+Range=[59 92]
+NumMFs=3
+MF1U='Kering':'gaussmf',[4.586 63.6 1]
+MF1L='mf1L':'gaussmf',[4.586 63.6 0.5]
+MF2U='Lembab':'gaussmf',[4.247 74 1]
+MF2L='mf2L':'gaussmf',[4.247 74 0.5]
+MF3U='Basah':'gaussmf',[5.181 87 1]
+MF3L='mf3L':'gaussmf',[5.181 87 0.5]
+
+[Input2]
+Name='T(t)'
+Range=[25.7 31]
+NumMFs=3
+MF1U='Sejuk':'gaussmf',[0.9555 26.63 1]
+MF1L='mf1L':'gaussmf',[0.9555 26.63 0.5]
+MF2U='Sedang':'gaussmf',[0.8111 28.74 1]
+MF2L='mf2L':'gaussmf',[0.8111 28.74 0.5]
+MF3U='Panas':'gaussmf',[0.4841 30.43 1]
+MF3L='mf3L':'gaussmf',[0.4841 30.43 0.5]
+
+[Output1]
+Name='output1'
+Range=[-1 1]
+NumMFs=5
+MF1='KK':'constant',[59 59]
+MF2='K':'constant',[67 67]
+MF3='S':'constant',[75 75]
+MF4='B':'constant',[85 85]
+MF5='BB':'constant',[92 92]
+
+[Rules]
+1 3, 1 (1) : 1
+1 2, 2 (1) : 1
+1 1, 2 (1) : 1
+2 3, 3 (1) : 1
+2 2, 3 (1) : 1
+2 1, 3 (1) : 1
+3 3, 4 (1) : 1
+3 2, 4 (1) : 1
+3 1, 5 (1) : 1

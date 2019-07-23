@@ -1,0 +1,112 @@
+clc; close all; clear all;
+%UJI JST
+
+mkdir('C:\Users\Kaka\Documents\MATLAB\Hasil\JST')
+addpath(genpath('C:\Users\Kaka\Documents\MATLAB\Hasil\JST'));
+Lokasi='E:\Data Kaka\Kuliah\Teknik Fisika\Tugas Akhir\Tugas Akhir Kaka\Data-Data\Data Siap\Dengan Uji Outlier\UJI JST.xlsx';
+var=7;
+
+%% Load best net
+load('Trata2.mat');
+net(1)=bestnetTrata2;
+load('Tmin.mat');
+net(2)=bestnetTmin;
+load('Tmax.mat');
+net(3)=bestnetTmax;
+load('RH.mat');
+net(4)=bestnetRH;
+load('CH.mat');
+net(5)=bestnetCH;
+load('WS.mat');
+net(6)=bestnetWS;
+load('WD.mat');
+net(7)=bestnetWD;
+
+%% Load Data Max Min
+load('maxTrata2.mat');
+load('maxTmin.mat');
+load('maxTmax.mat');
+load('maxRH.mat');
+load('maxCH.mat');
+load('maxWS.mat');
+load('maxWD.mat');
+
+load('minTrata2.mat');
+load('minTmin.mat');
+load('minTmax.mat');
+load('minRH.mat');
+load('minCH.mat');
+load('minWS.mat');
+load('minWD.mat');
+
+net(1).datamax=datamaksT;
+net(1).datamin=dataminT;
+net(2).datamax=datamaksTmin;
+net(2).datamin=dataminTmin;
+net(3).datamax=datamaksTmax;
+net(3).datamin=dataminTmax;
+net(4).datamax=datamaksRH;
+net(4).datamin=dataminRH;
+net(5).datamax=datamaksCH;
+net(5).datamin=dataminCH;
+net(6).datamax=datamaksWS;
+net(6).datamin=dataminWS;
+net(7).datamax=datamaksWD;
+net(7).datamin=dataminWD;
+
+%% PEMBACAAN DATA I/T
+for sheet=1:var                 %Letak sheet pada excel                     
+DataIO=xlsread(Lokasi,sheet);   %Proses pembacaan data excel
+[r,s]=size(DataIO);             %Ukuran matriks database
+JumlahVarInput=s-1;
+JumlahVarTarget=1;
+Input=zeros(s-1,r);             %Inisialisasi Input dengan nilai 0
+Target=zeros(1,r);              %Inisialisasi Output dengan nilai 0
+
+
+%Penentuan dan penataaan matriks input 
+for xin=1:JumlahVarInput
+    for yin=1:r
+       Input(xin,yin)=DataIO(yin,xin);
+    end
+end
+
+%Penentuan dan penataaan matriks output
+for xtar=JumlahVarInput+1:JumlahVarInput+JumlahVarTarget
+    for ytar=1:r
+        Target(xtar-JumlahVarInput,ytar)=DataIO(ytar,xtar);
+    end
+end
+
+net(sheet).input=Input;
+net(sheet).target=Target;
+%% NORMALISASI
+%Normalisasi Data Input dan Target
+
+[m,n]=size(net(sheet).input);
+[o,p]=size(net(sheet).target);
+inputnorm=zeros(m,n);
+
+for xin=1:m
+    for yin=1:n
+        inputnorm(xin,yin)=(Input(xin,yin)-net(sheet).datamin)/(net(sheet).datamax-net(sheet).datamin);
+    end
+end
+
+targetnorm=zeros(o,p);
+for xtar=1:o
+    for ytar=1:p
+        targetnorm(xtar,ytar)=(Target(xtar,ytar)-net(sheet).datamin)/(net(sheet).datamax-net(sheet).datamin); 
+    end
+end
+
+net(sheet).inputnorm=inputnorm;
+net(sheet).targetnorm=targetnorm;
+
+%Proses Uji Prediksi
+net(sheet).keluarannorm=sim(net(sheet).net,net(sheet).inputnorm);
+
+%Denormalisasi
+ net(sheet).keluaran = ((net(sheet).keluarannorm))*(net(shee-dataminT))+dataminT;
+end
+

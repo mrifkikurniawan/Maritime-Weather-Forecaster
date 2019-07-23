@@ -1,0 +1,151 @@
+[System]
+Name='Fuzzy2Suhu'
+Type='sugeno'
+Version=2.0
+NumInputs=4
+NumOutputs=1
+NumRules=81
+AndMethod='prod'
+OrMethod='probor'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+TypeRedMethod='Karnik-Mendel'
+outputType='icrisp'
+
+[Input1]
+Name='T(t-72)'
+Range=[20 40]
+NumMFs=3
+MF1U='RendahU':'gaussmf',[3.396 20 1]
+MF1L='RendahL':'gaussmf',[2.549 20 0.5]
+MF2U='SedangU':'gaussmf',[3.396 30 1]
+MF2L='SedangL':'gaussmf',[2.549 30 0.5]
+MF3U='TinggiU':'gaussmf',[3.396 40 1]
+MF3L='TinggiL':'gaussmf',[2.549 40 0.5]
+
+[Input2]
+Name='T(t-48)'
+Range=[20 40]
+NumMFs=3
+MF1U='RendahU':'gaussmf',[3.396 20 1]
+MF1L='RendahL':'gaussmf',[2.549 20 0.5]
+MF2U='SedangU':'gaussmf',[3.396 30 1]
+MF2L='SedangL':'gaussmf',[2.549 30 0.5]
+MF3U='TinggiU':'gaussmf',[3.396 40 1]
+MF3L='TinggiL':'gaussmf',[2.549 40 0.5]
+
+[Input3]
+Name='T(t-24)'
+Range=[20 40]
+NumMFs=3
+MF1U='RendahU':'gaussmf',[3.396 20 1]
+MF1L='RendahL':'gaussmf',[2.546 20 0.5]
+MF2U='SedangU':'gaussmf',[3.396 30 1]
+MF2L='SdaangL':'gaussmf',[2.546 30 0.5]
+MF3U='TinggiU':'gaussmf',[3.396 40 1]
+MF3L='TinggiL':'gaussmf',[2.546 40 0.5]
+
+[Input4]
+Name='T(t)'
+Range=[20 40]
+NumMFs=3
+MF1U='RendahU':'gaussmf',[3.396 20 1]
+MF1L='RendahL':'gaussmf',[2.549 20 0.5]
+MF2U='SedangU':'gaussmf',[3.396 30 1]
+MF2L='SedangL':'gaussmf',[2.549 30 0.5]
+MF3U='TinggiU':'gaussmf',[3.396 40 1]
+MF3L='TinggiL':'gaussmf',[2.549 40 0.5]
+
+[Output1]
+Name='T(t+24)'
+Range=[-1 1]
+NumMFs=5
+MF1='RR':'constant',[20 20]
+MF2='R':'constant',[25 25]
+MF3='S':'constant',[30 30]
+MF4='T':'constant',[35 35]
+MF5='TT':'constant',[40 40]
+
+[Rules]
+1 1 1 1, 1 (1) : 1
+2 1 1 1, 1 (1) : 1
+3 1 1 1, 1 (1) : 1
+1 2 1 1, 1 (1) : 1
+2 2 1 1, 1 (1) : 1
+3 2 1 1, 1 (1) : 1
+1 3 1 1, 1 (1) : 1
+2 3 1 1, 1 (1) : 1
+3 3 1 1, 1 (1) : 1
+1 1 2 1, 1 (1) : 1
+2 1 2 1, 1 (1) : 1
+3 1 2 1, 1 (1) : 1
+1 2 2 1, 1 (1) : 1
+2 2 2 1, 2 (1) : 1
+3 2 2 1, 2 (1) : 1
+1 3 2 1, 2 (1) : 1
+2 3 2 1, 2 (1) : 1
+3 3 2 1, 2 (1) : 1
+1 1 3 1, 2 (1) : 1
+2 1 3 1, 2 (1) : 1
+3 1 3 1, 2 (1) : 1
+1 2 3 1, 2 (1) : 1
+2 2 3 1, 2 (1) : 1
+3 2 3 1, 2 (1) : 1
+1 3 3 1, 2 (1) : 1
+2 3 3 1, 2 (1) : 1
+3 3 3 1, 2 (1) : 1
+1 1 1 2, 2 (1) : 1
+2 1 1 2, 2 (1) : 1
+3 1 1 2, 2 (1) : 1
+1 2 1 2, 2 (1) : 1
+2 2 1 2, 3 (1) : 1
+3 2 1 2, 3 (1) : 1
+1 3 1 2, 3 (1) : 1
+2 3 1 2, 3 (1) : 1
+3 3 1 2, 3 (1) : 1
+1 1 2 2, 3 (1) : 1
+2 1 2 2, 3 (1) : 1
+3 1 2 2, 3 (1) : 1
+1 2 2 2, 3 (1) : 1
+2 2 2 2, 3 (1) : 1
+3 2 2 2, 3 (1) : 1
+1 3 2 2, 3 (1) : 1
+2 3 2 2, 3 (1) : 1
+3 3 2 2, 3 (1) : 1
+1 1 3 2, 3 (1) : 1
+2 1 3 2, 3 (1) : 1
+3 1 3 2, 3 (1) : 1
+1 2 3 2, 3 (1) : 1
+2 2 3 2, 3 (1) : 1
+3 2 3 2, 3 (1) : 1
+1 3 3 2, 4 (1) : 1
+2 3 3 2, 4 (1) : 1
+3 3 3 2, 4 (1) : 1
+1 1 1 3, 4 (1) : 1
+2 1 1 3, 4 (1) : 1
+3 1 1 3, 4 (1) : 1
+1 2 1 3, 4 (1) : 1
+2 2 1 3, 4 (1) : 1
+3 2 1 3, 4 (1) : 1
+1 3 1 3, 4 (1) : 1
+2 3 1 3, 4 (1) : 1
+3 3 1 3, 4 (1) : 1
+1 1 2 3, 4 (1) : 1
+2 1 2 3, 4 (1) : 1
+3 1 2 3, 4 (1) : 1
+1 2 2 3, 4 (1) : 1
+2 2 2 3, 4 (1) : 1
+3 2 2 3, 4 (1) : 1
+1 3 2 3, 5 (1) : 1
+2 3 2 3, 5 (1) : 1
+3 3 2 3, 5 (1) : 1
+1 1 3 3, 5 (1) : 1
+2 1 3 3, 5 (1) : 1
+3 1 3 3, 5 (1) : 1
+1 2 3 3, 5 (1) : 1
+2 2 3 3, 5 (1) : 1
+3 2 3 3, 5 (1) : 1
+1 3 3 3, 5 (1) : 1
+2 3 3 3, 5 (1) : 1
+3 3 3 3, 5 (1) : 1

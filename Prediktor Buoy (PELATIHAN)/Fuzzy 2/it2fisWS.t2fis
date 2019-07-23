@@ -1,0 +1,86 @@
+[System]
+Name='it2fisWS'
+Type='sugeno'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=27
+AndMethod='prod'
+OrMethod='probor'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+TypeRedMethod='Karnik-Mendel'
+outputType='icrisp'
+
+[Input1]
+Name='WS(t-48)'
+Range=[0 9]
+NumMFs=3
+MF1U='R':'gauss2mf',[0.9329 1 0.9329 2 1]
+MF1L='mf1L':'gauss2mf',[0.6994 1 0.6994 2 0.5]
+MF2U='S':'gauss2mf',[1.223 4 1.223 5 1]
+MF2L='mf2L':'gauss2mf',[0.9172 4.5 0.9172 5 0.5]
+MF3U='T':'gauss2mf',[1.223 8 1.223 9 1]
+MF3L='mf3L':'gauss2mf',[0.9172 8 0.9172 9 0.5]
+
+[Input2]
+Name='WS(t-24)'
+Range=[0 9]
+NumMFs=3
+MF1U='R':'gauss2mf',[1.223 1 1.223 2 1]
+MF1L='mf1L':'gauss2mf',[0.9172 1 0.9172 2 0.5]
+MF2U='S':'gauss2mf',[1.223 4 1.223 5 1]
+MF2L='mf2L':'gauss2mf',[0.9172 4.5 0.9172 5 0.5]
+MF3U='T':'gauss2mf',[1.223 8 1.223 9 1]
+MF3L='mf3L':'gauss2mf',[0.9172 8 0.9172 9 0.5]
+
+[Input3]
+Name='WS'
+Range=[0 9]
+NumMFs=3
+MF1U='R':'gauss2mf',[1.223 1 1.223 2 1]
+MF1L='mf1L':'gauss2mf',[0.9172 1 0.9172 2 0.5]
+MF2U='S':'gauss2mf',[1.223 4 1.223 5 1]
+MF2L='mf2L':'gauss2mf',[0.9172 4.5 0.9172 5 0.5]
+MF3U='T':'gauss2mf',[1.223 8 1.223 9 1]
+MF3L='mf3L':'gauss2mf',[0.9172 8 0.9172 9 0.5]
+
+[Output1]
+Name='WS(t+24)'
+Range=[-1 1]
+NumMFs=5
+MF1='RR':'constant',[1 1]
+MF2='R':'constant',[3 3]
+MF3='S':'constant',[5 5]
+MF4='T':'constant',[7 7]
+MF5='TT':'constant',[9 9]
+
+[Rules]
+1 1 1, 1 (1) : 1
+1 1 2, 2 (1) : 1
+1 1 3, 2 (1) : 1
+1 2 1, 1 (1) : 1
+1 2 2, 2 (1) : 1
+1 2 3, 3 (1) : 1
+1 3 1, 1 (1) : 1
+1 3 2, 3 (1) : 1
+1 3 3, 4 (1) : 1
+2 1 1, 2 (1) : 1
+2 1 2, 2 (1) : 1
+2 1 3, 3 (1) : 1
+2 2 1, 2 (1) : 1
+2 2 2, 3 (1) : 1
+2 2 3, 4 (1) : 1
+2 3 1, 2 (1) : 1
+2 3 2, 3 (1) : 1
+2 3 3, 4 (1) : 1
+3 1 1, 1 (1) : 1
+3 1 2, 2 (1) : 1
+3 1 3, 4 (1) : 1
+3 2 1, 2 (1) : 1
+3 2 2, 3 (1) : 1
+3 2 3, 4 (1) : 1
+3 3 1, 3 (1) : 1
+3 3 2, 4 (1) : 1
+3 3 3, 5 (1) : 1
